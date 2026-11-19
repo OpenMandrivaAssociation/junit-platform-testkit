@@ -1,5 +1,5 @@
 Name:		junit-platform-testkit
-Version:	6.0.3
+Version:	6.1.3
 Release:	1
 Summary:	JUnit Platform test kit
 Group:		Development/Java
@@ -29,7 +29,9 @@ BuildRequires:	mvn(net.bytebuddy:byte-buddy)
 %description
 org.junit.platform:junit-platform-testkit %{version}. EngineTestKit
 discovers and executes one TestEngine and checks the recorded events.
-The sources are compiled with javac at release 17.
+The sources are compiled with javac at release 17. 6.1.3 passes a
+no-op test execution listener into the launcher orchestrator. The
+recorded-event checks are unchanged.
 
 %prep
 %autosetup -n junit-framework-r%{version} -p1
@@ -63,7 +65,7 @@ CP="%{_javadir}/assertj-core.jar:%{_javadir}/opentest4j/opentest4j.jar:%{_javadi
 mkdir -p classes
 javac --release 17 -encoding UTF-8 -Xlint:-options,-removal -proc:none \
 	-cp "$CP" -d classes @sources.list
-test "$(find classes -name '*.class' | wc -l)" -eq 20
+test "$(find classes -name '*.class' | wc -l)" -eq 21
 javap -v -classpath classes org.junit.platform.testkit.engine.EngineTestKit | grep -F -q 'major version: 61'
 printf '%s\n' 'Manifest-Version: 1.0' 'Automatic-Module-Name: org.junit.platform.testkit' > manifest.mf
 jar cfm junit-platform-testkit.jar manifest.mf -C classes .

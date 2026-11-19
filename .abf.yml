@@ -1,2 +1,4 @@
 sources:
+  junit-framework-6.1.3.tar.gz: 89171ccd7553ecdca5fcb27467e1f24360214d5e
+removed_sources:
   junit-framework-6.0.3.tar.gz: a61168f98d6a0000d956f3edb3f2a51c585a5509
